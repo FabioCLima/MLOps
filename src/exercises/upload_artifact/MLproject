@@ -1,0 +1,25 @@
+name: upload_artifact
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    parameters:
+      input_file:
+        description: Path to the local file to upload
+        type: str
+      artifact_name:
+        description: Name to assign to the W&B artifact
+        type: str
+      artifact_type:
+        description: Type category for the artifact (e.g. dataset, model)
+        type: str
+      artifact_description:
+        description: Human-readable description of the artifact
+        type: str
+    command: >-
+      python upload_artifact.py
+      --input_file {input_file}
+      --artifact_name {artifact_name}
+      --artifact_type {artifact_type}
+      --artifact_description {artifact_description}

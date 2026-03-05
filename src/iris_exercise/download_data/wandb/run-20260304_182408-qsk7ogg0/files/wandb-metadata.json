@@ -1,0 +1,50 @@
+{
+  "os":  "Linux-6.17.0-14-generic-x86_64-with-glibc2.39",
+  "python":  "CPython 3.13.12",
+  "startedAt":  "2026-03-04T21:24:08.509229Z",
+  "args":  [
+    "--file_url",
+    "https://raw.githubusercontent.com/scikit-learn/scikit-learn/4dfdfb4e1bb3719628753a4ece995a1b2fa5312a/sklearn/datasets/data/iris.csv",
+    "--artifact_name",
+    "iris_dataset",
+    "--artifact_type",
+    "raw_data",
+    "--artifact_description",
+    "This data sets consists of 3 different types of irises’ (Setosa, Versicolour, and Virginica) petal and sepal length"
+  ],
+  "program":  "/home/fabiolima/Desktop/MLOps/src/iris_exercise/download_data.py",
+  "codePath":  "src/iris_exercise/download_data.py",
+  "codePathLocal":  "download_data.py",
+  "git":  {
+    "remote":  "https://github.com/FabioCLima/MLOps.git",
+    "commit":  "fe3083115343304eb2ca12d6c417df32dec88628"
+  },
+  "email":  "fabio_lima07@yahoo.com.br",
+  "root":  "/home/fabiolima/Desktop/MLOps/src/iris_exercise",
+  "host":  "Fabio",
+  "executable":  "/home/fabiolima/Desktop/MLOps/.venv/bin/python",
+  "cpu_count":  14,
+  "cpu_count_logical":  20,
+  "gpu":  "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "368236998656",
+      "used":  "58859782144"
+    }
+  },
+  "memory":  {
+    "total":  "33252253696"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "memoryTotal":  "8585740288",
+      "cudaCores":  3072,
+      "architecture":  "Ada",
+      "uuid":  "GPU-dd5efa7f-b48f-0cdd-7215-9b3b34dfcc62"
+    }
+  ],
+  "cudaVersion":  "13.0",
+  "writerId":  "mwbrn83qot5ovgc719c6oofjoqradmoy"
+}

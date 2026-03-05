@@ -1,0 +1,17 @@
+{
+  "os":  "Linux-6.17.0-14-generic-x86_64-with-glibc2.39",
+  "python":  "CPython 3.13.12",
+  "startedAt":  "2026-03-04T14:11:38.921116Z",
+  "program":  "/home/fabiolima/Desktop/MLOps/demo_versioning_data.py",
+  "codePath":  "demo_versioning_data.py",
+  "codePathLocal":  "demo_versioning_data.py",
+  "git":  {
+    "remote":  "https://github.com/FabioCLima/MLOps.git",
+    "commit":  "fe3083115343304eb2ca12d6c417df32dec88628"
+  },
+  "email":  "fabio_lima07@yahoo.com.br",
+  "root":  "/home/fabiolima/Desktop/MLOps",
+  "host":  "Fabio",
+  "executable":  "/home/fabiolima/Desktop/MLOps/.venv/bin/python3",
+  "writerId":  "vaz4zdaapxjmcnry2eboyny3hwfyc40r"
+}

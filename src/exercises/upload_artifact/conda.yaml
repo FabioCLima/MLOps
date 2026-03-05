@@ -1,0 +1,8 @@
+name: upload_artifact
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip:
+    - wandb
+    - loguru

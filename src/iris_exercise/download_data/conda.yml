@@ -1,0 +1,13 @@
+name: download_iris_dataset
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip=23.3.1
+  - requests=2.31.0
+  - urllib3=1.24.1
+
+  - pip:
+    - wandb==0.16.4
+    - loguru
+

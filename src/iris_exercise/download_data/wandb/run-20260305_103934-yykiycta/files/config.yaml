@@ -1,0 +1,10 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        m: []
+        python_version: 3.13.12
+        t:
+            "4": 3.13.12
+            "5": 0.25.0
+            "12": 0.25.0
+            "13": linux-x86_64

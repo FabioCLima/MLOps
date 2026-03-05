@@ -1,0 +1,9 @@
+name: iris_pipeline
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.13
+  - pip=24.3.1
+  - mlflow=3.2.0      # lança e rastreia cada componente como MLflow Project
+  - hydra-core=1.3.2  # carrega config.yaml e gerencia sobrescritas via CLI

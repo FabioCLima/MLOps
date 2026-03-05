@@ -1,0 +1,63 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# conda.yml — Definição do ambiente do componente process_data
+#
+# QUANDO CRIAR ESSE ARQUIVO?
+#   Para cada componente do pipeline que for executado via MLflow.
+#   O MLflow lê esse arquivo e cria um ambiente isolado antes de rodar o script.
+#
+# REGRA GERAL:
+#   - Pacotes científicos (pandas, numpy, sklearn) → instale via conda (mais estável)
+#   - Pacotes do ecossistema ML/MLOps (wandb, mlflow, loguru) → instale via pip
+#   - Sempre declare versões fixas para garantir reprodutibilidade
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Nome do ambiente conda que será criado pelo MLflow.
+# Convenção: use o mesmo nome do componente para facilitar identificação.
+name: process_data
+
+# Canais são os repositórios onde o conda vai buscar os pacotes.
+# conda-forge é mantido pela comunidade e tem versões mais atualizadas.
+# defaults é o canal oficial da Anaconda — serve como fallback.
+# Ordem importa: conda-forge é consultado primeiro.
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  # ── Interpretador ──────────────────────────────────────────────────────────
+  # Sempre declare a versão do Python explicitamente.
+  # Sem isso, o conda escolhe qualquer versão disponível — quebrando reprodutibilidade.
+  - python=3.13
+
+  # ── Pacotes conda ──────────────────────────────────────────────────────────
+  # Sintaxe conda: nome=versão (= simples, NÃO ==)
+  # Instale aqui pacotes com dependências C/Fortran (pandas, sklearn, matplotlib)
+  # pois o conda resolve conflitos de bibliotecas de sistema melhor que o pip.
+  - requests=2.32.5       # requisições HTTP — usado no componente download_data
+  - pip=24.3.1            # declara a versão do pip usado na seção abaixo
+  - seaborn=0.13.2        # visualização estatística — usado para o plot t-SNE
+  - pandas=2.3.2          # manipulação de dados tabulares
+  - scikit-learn=1.7.2    # algoritmos ML — usado para o TSNE
+  - matplotlib=3.10.6     # backend de renderização do seaborn (= simples, não ==)
+  - pillow=11.3.0         # manipulação de imagens — dependência do wandb.Image
+
+  # ── Pacotes pip ────────────────────────────────────────────────────────────
+  # Sintaxe pip: nome==versão (== duplo)
+  # Use para pacotes que não estão disponíveis no conda-forge
+  # ou que têm versões mais recentes no PyPI.
+  # IMPORTANTE: o pip declarado acima (pip=24.3.1) é o que instala esses pacotes.
+  - pip:
+      - wandb==0.24.0   # rastreamento de experimentos e artefatos
+      - loguru          # logging — sem fixar versão pois não é crítico para reprodutibilidade
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CHECKLIST ao criar o conda.yml de um novo componente:
+#
+# [ ] name corresponde ao nome do componente
+# [ ] python com versão explícita
+# [ ] pip declarado como dependência conda (com versão)
+# [ ] pacotes científicos via conda com = simples
+# [ ] pacotes MLOps via pip com == duplo
+# [ ] loguru incluído se o componente usa logger_function.py
+# [ ] sem pacotes desnecessários (cada componente só declara o que usa)
+# ─────────────────────────────────────────────────────────────────────────────

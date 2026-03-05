@@ -1,0 +1,54 @@
+_wandb:
+    value:
+        cli_version: 0.25.0
+        e:
+            4zs5q47ei6zfqgywy80jpgg4hyllmrny:
+                args:
+                    - --input_file
+                    - data/zen.txt
+                    - --artifact_name
+                    - zen_of_python
+                    - --artifact_type
+                    - text_file
+                    - --artifact_description
+                    - The Zen of Pyhthon - Tim Peters
+                codePath: src/upload_artifact.py
+                codePathLocal: src/upload_artifact.py
+                cpu_count: 14
+                cpu_count_logical: 20
+                cudaVersion: "13.0"
+                disk:
+                    /:
+                        total: "368236998656"
+                        used: "58797158400"
+                email: fabio_lima07@yahoo.com.br
+                executable: /home/fabiolima/Desktop/MLOps/.venv/bin/python3
+                git:
+                    commit: fe3083115343304eb2ca12d6c417df32dec88628
+                    remote: https://github.com/FabioCLima/MLOps.git
+                gpu: NVIDIA GeForce RTX 4060 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      cudaCores: 3072
+                      memoryTotal: "8585740288"
+                      name: NVIDIA GeForce RTX 4060 Laptop GPU
+                      uuid: GPU-dd5efa7f-b48f-0cdd-7215-9b3b34dfcc62
+                host: Fabio
+                memory:
+                    total: "33252253696"
+                os: Linux-6.17.0-14-generic-x86_64-with-glibc2.39
+                program: /home/fabiolima/Desktop/MLOps/src/upload_artifact.py
+                python: CPython 3.13.12
+                root: /home/fabiolima/Desktop/MLOps
+                startedAt: "2026-03-04T17:48:48.244484Z"
+                writerId: 4zs5q47ei6zfqgywy80jpgg4hyllmrny
+        m: []
+        python_version: 3.13.12
+        t:
+            "3":
+                - 2
+            "4": 3.13.12
+            "5": 0.25.0
+            "12": 0.25.0
+            "13": linux-x86_64

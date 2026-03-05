@@ -1,0 +1,92 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# MLproject — Definição do componente download_data
+#
+# O QUE É ESSE ARQUIVO?
+#   É o contrato público do componente. Ele diz ao MLflow:
+#     1. Qual ambiente usar para executar o script (conda_env)
+#     2. Quais parâmetros o componente aceita (parameters)
+#     3. Qual comando executar com esses parâmetros (command)
+#
+# ONDE FICA?
+#   Na raiz da pasta do componente, junto com o script e o conda.yml:
+#   download_data/
+#   ├── download_data.py   ← lógica do componente
+#   ├── conda.yml          ← ambiente de execução
+#   └── MLproject          ← este arquivo (sem extensão)
+#
+# COMO O MLFLOW USA ESSE ARQUIVO?
+#   Quando você roda: mlflow run download_data/
+#   O MLflow entra na pasta, lê o MLproject, cria o ambiente do conda.yml
+#   e executa o comando definido em entry_points.main.command
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Nome do componente — aparece nos logs do MLflow e no W&B.
+# Convenção: mesmo nome da pasta e do script principal.
+name: download_data
+
+# Aponta para o arquivo de ambiente na mesma pasta.
+# O MLflow cria um ambiente conda isolado a partir desse arquivo
+# antes de executar qualquer coisa.
+conda_env: conda.yml
+
+# Entry points definem os modos de execução do componente.
+# "main" é o entry point padrão — chamado quando você roda mlflow run .
+# Você pode ter múltiplos entry points (ex: main, test, validate),
+# mas na prática a maioria dos componentes tem só o main.
+entry_points:
+  main:
+
+    # Parâmetros são a interface pública do componente.
+    # Cada parâmetro aqui deve ter um --argumento correspondente no argparse do script.
+    # O MLflow substitui {nome} no command pelos valores passados via -P ou pelo config.yaml.
+    parameters:
+
+      # type: uri — valida que o valor é uma URL bem formada.
+      # Outros tipos disponíveis: str, float, int, path
+      file_url:
+        description: URL of the file to download
+        type: uri
+
+      artifact_name:
+        description: Name to assign to the artifact in W&B
+        type: str
+
+      # default: define um valor usado quando o parâmetro não é passado explicitamente.
+      # Útil para parâmetros com valor mais comum conhecido — evita repetição no config.yaml.
+      artifact_type:
+        description: Type category of the artifact
+        type: str
+        default: raw_data
+
+      artifact_description:
+        description: Human-readable description of the artifact
+        type: str
+
+    # command define exatamente o que o MLflow vai executar no terminal.
+    # >- é sintaxe YAML para string multilinha sem quebras de linha no resultado final.
+    # {parametro} é substituído pelo valor recebido — vindo de -P ou do config.yaml.
+    #
+    # Exemplo de como o MLflow monta o comando final:
+    #   python download_data.py
+    #     --file_url https://exemplo.com/iris.csv
+    #     --artifact_name iris
+    #     --artifact_type raw_data
+    #     --artifact_description "The sklearn IRIS dataset"
+    command: >-
+      python download_data.py \
+        --file_url {file_url} \
+        --artifact_name {artifact_name} \
+        --artifact_type {artifact_type} \
+        --artifact_description {artifact_description}
+
+# ─────────────────────────────────────────────────────────────────────────────
+# CHECKLIST ao criar o MLproject de um novo componente:
+#
+# [ ] name corresponde ao nome da pasta e do script
+# [ ] conda_env aponta para o conda.yml na mesma pasta
+# [ ] cada parâmetro aqui tem um --argumento no argparse do script
+# [ ] parâmetros com valor padrão conhecido têm default declarado
+# [ ] tipos corretos: uri para URLs, path para caminhos, str para o resto
+# [ ] {parametro} no command bate exatamente com o nome em parameters
+# [ ] command usa >- para multilinha limpa
+# ─────────────────────────────────────────────────────────────────────────────
